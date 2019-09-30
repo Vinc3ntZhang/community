@@ -47,3 +47,6 @@ create table question
         primary key (id)
 );
 ```
+````bash
+mvn flyway:migrate
+````
