@@ -65,7 +65,7 @@
                 <div class="form-group">
                     <label for="description">问题补充（必填，请参照右侧提示）</label>
                     <textarea class="form-control" rows="3" cols="30" name="description" id="description"
-                              th:value="${description}"></textarea>
+                              th:text="${description}"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="tag">添加标签：</label>
@@ -74,8 +74,10 @@
                 </div>
                 <div class="container-fluid main">
                     <div class="row">
-                        <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12" th:text="${error}"
-                             th:if="${error != null}"></div>
+                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                            <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12" th:text="${error}"
+                                 th:if="${error != null}"></div>
+                        </div>
                         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                             <button type="submit" class="btn btn-success btn-publish">发布</button>
                         </div>
