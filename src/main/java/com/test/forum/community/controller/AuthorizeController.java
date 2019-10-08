@@ -2,9 +2,9 @@ package com.test.forum.community.controller;
 
 import com.test.forum.community.dto.AccessTokenDTO;
 import com.test.forum.community.dto.GitHubUser;
-import com.test.forum.community.mapper.UserMapper;
 import com.test.forum.community.model.User;
 import com.test.forum.community.provider.GitHubProvider;
+import com.test.forum.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -32,7 +32,7 @@ public class AuthorizeController {
     private String redirectUri;
 
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
@@ -53,10 +53,8 @@ public class AuthorizeController {
             user.setToken(token);
             user.setName(gitHubUser.getName());
             user.setAccountId(String.valueOf(gitHubUser.getId()));
-            user.setGmtCreate(System.currentTimeMillis());
-            user.setGmtModified(user.getGmtCreate());
             user.setAvatarUrl(gitHubUser.getAvatarUrl());
-            userMapper.insert(user);
+            userService.createOrUpdate(user);
             //添加Cookie
             response.addCookie(new Cookie("token", token));
             //1、创建session
@@ -67,4 +65,17 @@ public class AuthorizeController {
             return "redirect:/";
         }
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request,
+                         HttpServletResponse response
+    ) {
+        //退出登录，清除cookie
+        request.getSession().removeAttribute("user");
+        Cookie cookie = new Cookie("token", null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/";
+    }
+
 }
