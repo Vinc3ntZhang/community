@@ -2,6 +2,8 @@ package com.test.forum.community.service;
 
 import com.test.forum.community.dto.PaginationDTO;
 import com.test.forum.community.dto.QuestionDTO;
+import com.test.forum.community.exception.CustomizeErrorCode;
+import com.test.forum.community.exception.CustomizeException;
 import com.test.forum.community.mapper.QuestionMapper;
 import com.test.forum.community.mapper.UserMapper;
 import com.test.forum.community.model.Question;
@@ -110,6 +112,9 @@ public class QuestionService {
     public QuestionDTO getById(Integer id) {
 //        Question question = questionMapper.getById(id);
         Question question = questionMapper.selectByPrimaryKey(id);
+        if (question == null) {
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question, questionDTO);
         User user = userMapper.selectByPrimaryKey(question.getCreator());
@@ -136,7 +141,10 @@ public class QuestionService {
             QuestionExample example = new QuestionExample();
             example.createCriteria()
                     .andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(updateQuestion, example);
+            int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
+            if (updated != 1) {
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
     }
 }
