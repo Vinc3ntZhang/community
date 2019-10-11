@@ -1,1 +1,1 @@
-alter table COMMENT add content text;
+alter table COMMENT add content VARCHAR(1024);

@@ -26,7 +26,7 @@ public class ResultDTO {
 
     public static ResultDTO successOf(){
         ResultDTO resultDTO = new ResultDTO();
-        resultDTO.setCode(400);
+        resultDTO.setCode(200);
         resultDTO.setMessage("请求成功");
         return resultDTO;
     }
