@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/community.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/moment.min.js"></script>
     <script src="/js/community.js"></script>
 </head>
 <body>
@@ -40,23 +41,37 @@
                     <span th:text="${question.commentCount}"></span>个回复
                 </h4>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-sp">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 jiange" th:each="comment : ${comments}">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comments" th:each="comment : ${comments}">
                     <div class="media">
                         <div class="media-left">
                             <a href="#">
                                 <img class="media-object img-rounded" alt="裂开" th:src="${comment.user.avatarUrl}">
                             </a>
                         </div>
-                        <div class="media-body">
+                        <div class="media-body" th:id="${'comment-body-'+comment.id}">
                             <h5 class="media-heading">
                                 <span th:text="${comment.user.name}"></span>
                             </h5>
                             <div th:text="${comment.content}"></div>
+
                             <div class="menu">
-                                <span class="glyphicon glyphicon-thumbs-up icon">点赞</span>
-                                <span class="glyphicon glyphicon-comment icon">评论</span>
-                                <span th:text="${#dates.format(comment.gmtCreate,'yyyy-MM-dd HH:mm')}"
-                                      style="float: right"></span>&nbsp;
+                                <span class="glyphicon glyphicon-thumbs-up icon"><span th:text="${comment.likeCount}"></span></span>
+                                <span th:data-id="${comment.id}" onclick="collapseComment(this)" class="comment-icon">
+                                    <span class="glyphicon glyphicon-comment icon">
+                                        <span th:text="${comment.commentCount}"></span>
+                                    </span>
+                                </span>
+                                <span th:text="${#dates.format(comment.gmtCreate,'yyyy-MM-dd HH:mm')}" class="pull-right"></span>&nbsp;
+                            </div>
+
+                            <!--二级评论-->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse sub-comment" th:id="${'comment-'+comment.id}">
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <input type="text" class="form-control" placeholder="评论一下..." th:id="${'input-'+comment.id}">
+                                    <button type="button" class="btn btn-success pull-right btn" onclick="comment(this)" th:data-id="${comment.id}">评论</button>
+                                </div>
+
                             </div>
                         </div>
                     </div>

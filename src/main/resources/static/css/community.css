@@ -63,6 +63,20 @@ body {
     margin-top: 0;
 }
 
+/*二级评论样式*/
+.sub-comment {
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #eee;
+    padding-top: 15px;
+    margin-bottom: 15px;
+}
+
+/*二级评论按钮*/
+.sub-comment .btn {
+    margin: 10px;
+}
+
 /*点赞、评论按钮和时间样式*/
 .menu {
     color: #999;
@@ -75,12 +89,26 @@ body {
     cursor: pointer;
 }
 
+.menu .active {
+    color: #499ef3;
+}
+
 .menu .icon:hover {
     color: #499ef3;
 }
 
+.menu .comment-icon {
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.menu .comment-icon:hover {
+    color: #499ef3;
+}
+
+
 /*回复内容间隔*/
-.jiange {
+.comments {
     padding-top: 5px;
     margin-bottom: 15px;
     border-bottom: 1px solid #eee;
