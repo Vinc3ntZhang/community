@@ -115,3 +115,22 @@ function collapseComment(e) {
         }
     }
 }
+
+//展示selectTag
+function showSelectTag() {
+    $("#select-tag").show();
+}
+
+//点击添加标签
+function selectTag(e) {
+    var value = e.getAttribute("data-tag");
+    var previous = $("#tag").val();
+    //不存在该标签时进行添加
+    if (previous.indexOf(value) == -1) {
+        if (previous) {
+            $("#tag").val(previous + ',' + value);
+        } else {
+            $("#tag").val(value);
+        }
+    }
+}

@@ -31,7 +31,7 @@ body {
 
 /*问题回复页面编辑*/
 .community-menu {
-    display: block;
+    /*display: block;*/
     margin-bottom: 15px;
     color: #999;
     font-size: 14px;
@@ -129,4 +129,14 @@ body {
     margin-left: 0;
     list-style: none;
     padding-left: 0;
+}
+/*添加标签栏*/
+.publish-tag-tab{
+    display: none;
+    margin-top: 10px;padding: 10px;
+}
+.publish-tag-tab .label-info{
+    white-space: normal;
+    margin: 5px 5px;
+    display: inline-block;
 }
