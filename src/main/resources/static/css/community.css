@@ -118,3 +118,15 @@ body {
 .question-title {
     margin-top: 25px;
 }
+/*问题标签*/
+.question-tag{
+    margin-right: 8px;
+}
+/*相关问题样式*/
+.question-related{
+    line-height: 20px;
+    font-size: 12px;
+    margin-left: 0;
+    list-style: none;
+    padding-left: 0;
+}
