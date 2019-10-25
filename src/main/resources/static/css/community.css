@@ -140,3 +140,8 @@ body {
     margin: 5px 5px;
     display: inline-block;
 }
+/*页脚样式*/
+.footer{
+    padding: 10px 25%;
+    color: #666;
+}
