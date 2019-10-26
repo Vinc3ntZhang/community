@@ -42,8 +42,8 @@ public class AuthorizeController {
                            HttpServletRequest request,
                            HttpServletResponse response) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
-        accessTokenDTO.setClient_id("edb08beb3b762852a9b1");
-        accessTokenDTO.setClient_secret("b572e1c24d177543c37ac67ac16d5dd7822f188c");
+        accessTokenDTO.setClient_id(clientId);
+        accessTokenDTO.setClient_secret(clientSecret);
         accessTokenDTO.setCode(code);
         accessTokenDTO.setRedirect_uri("http://localhost:8888/callback");
         accessTokenDTO.setState(state);
