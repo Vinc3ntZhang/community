@@ -2,7 +2,7 @@ create table question
 (
     id int auto_increment,
     title VARCHAR(50),
-    description VARCHAR(1024),
+    description text,
     gmt_create BIGINT,
     gmt_modified BIGINT,
     creator int,
@@ -13,4 +13,3 @@ create table question
     constraint question_pk
         primary key (id)
 );
-
